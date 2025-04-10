@@ -1,66 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel REST API with Sanctum Authentication & External Search
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A secure RESTful API built with **Laravel 8+**, using **Sanctum** for token-based authentication, supporting full **user CRUD** and **dynamic external data search** using real-time data from Google Sheets.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- ✅ Login with Sanctum token auth
+- ✅ Full CRUD for user accounts
+- ✅ Protected routes (`auth:sanctum`)
+- ✅ Live search by `NAMA`, `NIM`, or `YMD` from [https://bit.ly/48ejMhW](https://bit.ly/48ejMhW)
+- ✅ Tested with Postman, includes collection
+- ✅ MySQL database (XAMPP-compatible)
+- ✅ Ready-to-use Postman collection & DB backup
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🔐 Authentication
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Authentication is handled using **Laravel Sanctum**.\
+All protected routes require a Bearer token.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 📦 API Endpoints
 
-## Laravel Sponsors
+| Method | Endpoint          | Description                      |
+| ------ | ----------------- | -------------------------------- |
+| POST   | `/api/login`      | Login and receive token          |
+| GET    | `/api/users`      | Get all users                    |
+| POST   | `/api/users`      | Create new user                  |
+| GET    | `/api/users/{id}` | Get user by ID                   |
+| PUT    | `/api/users/{id}` | Update user                      |
+| DELETE | `/api/users/{id}` | Delete user                      |
+| GET    | `/api/search`     | Search external data (protected) |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+### 🔍 Dynamic Search Parameters (Protected)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+| Field  | Example URL                               |
+| ------ | ----------------------------------------- |
+| `NAMA` | `/api/search?field=NAMA&query=Turner Mia` |
+| `NIM`  | `/api/search?field=NIM&query=9352078461`  |
+| `YMD`  | `/api/search?field=YMD&query=20230405`    |
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🧪 Testing with Postman
 
-## Code of Conduct
+Import `laravel-rest-api.postman_collection.json` into Postman.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+> 🛑 **Don't forget to include the Bearer token** in Authorization tab for protected routes.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 💾 Setup Instructions
 
-## License
+1. Clone the repo:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+   ```bash
+   git clone https://github.com/rizkyhhh/laravel-rest-api.git
+   cd laravel-rest-api
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   composer install
+   ```
+
+3. Create `.env` and setup your DB:
+
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+4. Import DB backup:
+
+   - Open `phpMyAdmin`
+   - Import `docs/rest_api_backup.sql`
+
+5. Migrate & run the server:
+
+   ```bash
+   php artisan migrate
+   php artisan serve
+   ```
+
+---
+
+## 📂 Project Structure
+
+```bash
+routes/
+  └── api.php         # Route definitions
+
+app/
+  └── Http/
+      └── Controllers/
+          ├── AuthController.php
+          ├── UserController.php
+          └── SearchController.php
+```
+
+---
+
+## 📁 Included Files
+
+| File                      | Description      |
+| ------------------------- | ---------------- |
+| `rest_api.sql`            | MySQL backup     |
+| `postman_collection.json` | Postman requests |
+| `.env.example`            | Example env file |
+
+---
+
+## 👤 Author
+
+- **Your Name**
+- GitHub: [@rizkyhhh](https://github.com/rizkyhhh)
+
+---
+
+## 📜 License
+
+This project is open-source and free to use under the [MIT License](LICENSE).
+

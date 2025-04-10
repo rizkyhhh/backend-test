@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "770ba813-7a42-4004-b855-18878d3c9ca5",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43928821",
+		"_collection_link": "https://rizkyhilman.postman.co/workspace/Rizky-Hilman's-Workspace~3d2d9a83-af76-47c1-8626-0c45375397b7/collection/43928821-770ba813-7a42-4004-b855-18878d3c9ca5?action=share&source=collection_link&creator=43928821"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/api/search?field=NIM&query=9352078461",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "2|j6TOvranJSUm7Kt4uapApswGYWoSrWUt76qMdB4Lbe6c4bef",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/search?field=NIM&query=9352078461",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"search"
+					],
+					"query": [
+						{
+							"key": "field",
+							"value": "NIM"
+						},
+						{
+							"key": "query",
+							"value": "9352078461"
+						}
+					]
+				},
+				"description": "Backend test take home"
+			},
+			"response": []
+		}
+	]
+}
